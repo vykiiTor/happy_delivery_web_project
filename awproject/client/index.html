@@ -1,0 +1,37 @@
+<!doctype>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>E-Book</title>
+        <!-- Load Vue followed by Vue Router -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <div id="app">
+          <header>
+            <nav style="text-align: right;">
+              <router-link to='/stdhome'>FR</router-link> |
+              <router-link to='/home'>ENG</router-link> |
+              <router-link to='/cart'>Cart</router-link>
+            </nav>
+          </header>
+          <main>
+            <router-view
+              :articles="articles"
+              :cart= "cart"
+              @add-article="addArticle"
+              @delete-book="deletebook"
+              @delete-item="deleteitem"
+            ></router-view>
+          </main>
+        </div>
+        <script src="/vue-application.js"></script>
+
+    </body>
+
+    
+</html>
+

@@ -1,4 +1,4 @@
-# vue-project
+# awproject
 
 ## Project setup
 ```
