@@ -9,7 +9,7 @@ const db = mysql.createConnection({
   
     user: "root",
   
-    password: "Thioro78@"
+    password: "Othman611"
 });
   
 db.connect(function(err){
@@ -19,7 +19,7 @@ db.connect(function(err){
 
 
 router.get('/articles', (req, res) => {
-    let sql = 'select * from ebook_db.books';
+    let sql = 'select * from restaurant.plats';
     db.query(sql, (err, result)=>{
       if (err) throw err;
       res.json(result);
@@ -51,7 +51,7 @@ router.post('/login', (req, res)=>{
         var passconnexion = [[passwordLogin]];
 
   
-        db.query('SELECT user_id FROM ebook_db.users WHERE email = ? ', [emailConnexion], async (err, res) => {
+        db.query('SELECT user_id FROM restaurant.users WHERE email = ? ', [emailConnexion], async (err, res) => {
   
           console.log(res);
           console.log("hello22");
@@ -77,7 +77,7 @@ router.post('/login', (req, res)=>{
         },
         )
   
-        db.query('SELECT user_id FROM ebook_db.users WHERE password = ? ', [passconnexion], async (err, res) => {
+        db.query('SELECT user_id FROM restaurant.users WHERE password = ? ', [passconnexion], async (err, res) => {
   
           console.log(res);
           console.log("hello11");
@@ -125,7 +125,7 @@ router.post('/login', (req, res)=>{
       
     
   
-    var sql = 'INSERT INTO ebook_db.users (email, password, adminuser) VALUES ?';
+    var sql = 'INSERT INTO restaurant.users (email, password, adminuser) VALUES ?';
     db.query(sql, [user], (err, result) => {
       if (err) throw err;
         res.json(result)
@@ -146,7 +146,7 @@ router.post('/login', (req, res)=>{
     console.log(book)
   
   
-    var sql = 'INSERT INTO ebook_db.books (tittle, description, image, author) VALUES ?';
+    var sql = 'INSERT INTO restaurant.plats (tittle, description, image, author) VALUES ?';
     db.query(sql, [book], (err, result) => {
       if (err) throw err;
       console.log(result)
@@ -156,14 +156,14 @@ router.post('/login', (req, res)=>{
   })
 
   router.get('/cart', (req, res) => {
-    let sql = 'select * from ebook_db.cart';
+    let sql = 'select * from restaurant.cart';
     db.query(sql, (err, result)=>{
       if (err) throw err;
       res.json(result);
     })
   });
 
-  router.post('/bookscart', (req, res) => {
+  router.post('/platscart', (req, res) => {
     const tittle = req.body.tittle
     const description = req.body.description
     const image = req.body.image
@@ -175,7 +175,7 @@ router.post('/login', (req, res)=>{
     console.log(book)
   
   
-    var sql = 'INSERT INTO ebook_db.cart (tittle, description, image, author) VALUES ?';
+    var sql = 'INSERT INTO restaurant.cart (tittle, description, image, author) VALUES ?';
     db.query(sql, [book], (err, result) => {
       if (err) throw err;
       console.log(result)
@@ -189,7 +189,7 @@ router.post('/login', (req, res)=>{
     const id = req.body.id
     console.log(id)
 
-    var sql = 'delete from ebook_db.books where book_id =' +id+ ' ';
+    var sql = 'delete from restaurant.plats where book_id =' +id+ ' ';
     db.query(sql, (err, result) => {
       if (err) throw err;
       console.log(result)
@@ -202,7 +202,7 @@ router.post('/login', (req, res)=>{
     const id = req.body.id
     console.log(id)
 
-    var sql = 'delete from ebook_db.cart where book_id =' +id+ ' ';
+    var sql = 'delete from restaurant.cart where book_id =' +id+ ' ';
     db.query(sql, (err, result) => {
       if (err) throw err;
       console.log(result)
